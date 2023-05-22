@@ -6,11 +6,48 @@ import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'fun_codes.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(MyApp());
 }
+dart
+     const Locale _defaultLocale = Locale('ar', '');
+dart
+     void main() {
+       runApp(MyApp());
 
+       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+         systemNavigationBarColor: Colors.white, // Customize navigation bar color
+         systemNavigationBarIconBrightness: Brightness.dark, // Customize navigation bar icons
+       ));
+
+       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]); // Set preferred screen orientation
+
+       SystemChrome.setSystemLocale(_defaultLocale);
+     }
+
+class MyApp extends StatelessWidget {
+       @override
+       Widget build(BuildContext context) {
+         return MaterialApp(
+           localizationsDelegates: [
+             GlobalMaterialLocalizations.delegate,
+             GlobalWidgetsLocalizations.delegate,
+           ],
+           supportedLocales: [
+             _defaultLocale, // Use the default locale as the supported locale
+             Locale('en', ''), // Add any other supported locales if needed
+           ],
+           title: 'My App',
+           theme: ThemeData(
+             primarySwatch: Colors.blue,
+           ),
+           home: MyHomePage(),
+         );
+       }
+     }
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
